@@ -1,0 +1,45 @@
+{
+  "name": "todomvc-with-delay",
+  "version": "1.0.0",
+  "description": "Delayed TodoMVC app and end-to-end tests that handle it",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "posttest": "cd todomvc; npm run reset:db",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "start": "cd todomvc; npm start -- --quiet",
+    "ci": "start-test 3000 record",
+    "record": "cypress run --record --parallel",
+    "postinstall": "cd todomvc; npm install",
+    "issues": "git-issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/todomvc-with-delay.git"
+  },
+  "keywords": [
+    "cypress",
+    "cypress-io",
+    "e2e",
+    "end-to-end",
+    "testing"
+  ],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bahmutov/todomvc-with-delay/issues"
+  },
+  "homepage": "https://github.com/bahmutov/todomvc-with-delay#readme",
+  "devDependencies": {
+    "cypress": "3.1.0",
+    "git-issues": "1.3.1",
+    "prettier": "1.14.2",
+    "standard": "11.0.1",
+    "start-server-and-test": "1.7.0"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "private": true
+}
