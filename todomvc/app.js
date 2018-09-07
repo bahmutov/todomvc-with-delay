@@ -145,14 +145,32 @@
     // if you want to expose "app" globally only
     // during end-to-end tests you can guard it using "window.Cypress" flag
     if (window.Cypress) {
-      // window.app = app
-      window.appReady = true
+      // simple case: set a new property
+      window.app = app
+
+      // overwrite an existing property
+      // window.appReady = true
+
+      // overwrite deep property
+      // window.config.appReady = true
+
+      // replace the entire object (hope the tests don't hold stale reference)
+      // window.config = {
+      //   appReady: true
+      // }
       console.log('app has started')
     }
   }
 
+  // cases when there is initial value
+
   // set the initial flag right away
-  window.appReady = false
+  // window.appReady = false
+
+  // more difficult case: the flag is a complex object
+  // window.config = {
+  //   appReady: false
+  // }
 
   // start application after an artificial delay
   setTimeout(startApp, 2500)
