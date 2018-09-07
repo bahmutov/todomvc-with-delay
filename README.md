@@ -1,5 +1,7 @@
 # todomvc-with-delay [![CircleCI][ci-badge]][ci-url] [![renovate-app badge][renovate-badge]][renovate-app]
 
+[![Cypress.io tests](https://img.shields.io/badge/cypress.io-tests-green.svg?style=flat-square)](https://dashboard.cypress.io/#/projects/94q1qt/runs)
+
 ## Requirements ⚙️
 
 - Any computer: Mac, Windows, Linux
