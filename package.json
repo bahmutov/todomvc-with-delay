@@ -12,6 +12,7 @@
     "ci": "start-test 3000 record",
     "record": "cypress run --record --parallel",
     "postinstall": "cd todomvc; npm install",
+    "local:test": "start-test 3000",
     "issues": "git-issues"
   },
   "repository": {

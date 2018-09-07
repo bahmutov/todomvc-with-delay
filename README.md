@@ -18,7 +18,45 @@ npm install
 
 [Vue.js](https://vuejs.org/) + [Vuex](https://vuex.vuejs.org/) + REST server application that we are going to test is in the folder `todomvc`. This application and its full testing is described in [this blog post](https://www.cypress.io/blog/2017/11/28/testing-vue-web-application-with-vuex-data-store-and-rest-backend/).
 
-The application starts several seconds _AFTER_ the page loads to simulate slowly loading app.
+The application starts several seconds _AFTER_ the page loads to simulate slowly loading app, see [todomvc/app.js#L154](todomvc/app.js#L154). When the app is finally ready to start, it is added to the `window` object, but only for Cypress tests
+
+```js
+// app code
+if (window.Cypress) {
+  window.app = app
+  console.log('app has started')
+}
+```
+
+To start running the tests only after `window.app` property appears, we can add an automatically retried assertion, see [cypress/integration/spec.js](cypress/integration/spec.js)
+
+```js
+// spec
+beforeEach(() => {
+  cy.visit('/')
+  cy.window().should('have.property', 'app')
+})
+```
+
+Similarly, if the "ready" flag property exists, but then is flipped, we should assert its value
+
+```js
+// app code
+if (window.Cypress) {
+  window.appReady = true
+  console.log('app has started')
+}
+```
+
+```js
+// spec
+beforeEach(() => {
+  cy.visit('/')
+  cy.window().should('have.property', 'appReady', true)
+})
+```
+
+For more examples of automatically waiting for a property, or its value, see [this commit](https://github.com/cypress-io/cypress-example-recipes/commit/9d75842c18535d691f7c717186b5a855e004674e#diff-1f0349eb597d2c41384216c1ffb4c517)
 
 [ci-badge]: https://circleci.com/gh/bahmutov/todomvc-with-delay.svg?style=svg
 [ci-url]: https://circleci.com/gh/bahmutov/todomvc-with-delay

@@ -144,11 +144,15 @@
 
     // if you want to expose "app" globally only
     // during end-to-end tests you can guard it using "window.Cypress" flag
-    // if (window.Cypress) {
-    window.app = app
-    console.log('app has started')
-    // }
+    if (window.Cypress) {
+      // window.app = app
+      window.appReady = true
+      console.log('app has started')
+    }
   }
+
+  // set the initial flag right away
+  window.appReady = false
 
   // start application after an artificial delay
   setTimeout(startApp, 2500)
