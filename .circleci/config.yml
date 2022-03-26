@@ -6,7 +6,7 @@ jobs:
   test:
     docker:
       # find Docker image at https://github.com/cypress-io/cypress-docker-images
-      - image: cypress/base:10
+      - image: cypress/base:14
 
     working_directory: ~/repo
 
